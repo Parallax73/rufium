@@ -1,6 +1,14 @@
 [package]
 name = "rufium"
 version = "0.1.0"
+author = ["Gabriel Leite"] 
+description = "Keyboard-driven PDF Reader"
+readme = "README.md"
+homepage = "https://github.com/Parallax73/rufium"
+repository = "https://github.com/Parallax73/rufium"
+license = "MIT or Apache-2.0"
+keywords = ["pdf", "rufium", "reader"]
 edition = "2024"
 
 [dependencies]
+pdfium-render =   "0.8.37" 
