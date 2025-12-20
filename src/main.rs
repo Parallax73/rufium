@@ -1,4 +1,4 @@
-mod engine; 
+mod engine;
 
 use pdfium_render::prelude::*;
 
@@ -13,10 +13,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .enumerate()
         .for_each(|(index, page)| {
             println!("=============== Page {} ==============", index);
-            
-            let text = page.text().unwrap().all(); 
+
+            let text = page.text().unwrap().all();
             println!("{}", text);
         });
 
     Ok(())
-}}
+}
