@@ -11,4 +11,7 @@ keywords = ["pdf", "rufium", "reader"]
 edition = "2024"
 
 [dependencies]
-pdfium-render =   "0.8.37" 
+iced = { version = "0.14.0", features = ["image", "debug"] }
+pdfium-render =   { version = "0.8.37", features = ["image"] }
+image = "0.25.9"
+clap = {version = "4.5.53", features= ["derive"] }
