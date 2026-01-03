@@ -3,3 +3,8 @@
 *.dll
 *.dylib
 test/*.pdf
+/.idea
+
+*.svg
+*.data
+
