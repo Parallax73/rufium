@@ -1,19 +1,31 @@
 mod engine;
 
+use std::process;
+
 use clap::{Arg, Parser};
 use iced::wgpu::wgc::command;
 use iced::widget::{column, container, image, text};
-use iced::{Element, Length};
+use iced::{wgpu, Element, Length};
 use pdfium_render::prelude::*;
+use std::path::Path;
 
 #[derive(Parser, Debug)]
 #[command(version)]
 struct Args {
+    #[arg(short = 'f', long)]
     file_name: String,
 }
 
 pub fn main() -> iced::Result {
+    //TODO! make some way to load the text before the image ,then maybe hold (-1, 0 , 1) pages
+
     let args = Args::parse();
+    let path = Path::new(&args.file_name);
+
+    if path.extension().and_then(|e| e.to_str()) != Some("pdf") {
+        eprintln!("The file you entered isn't a PDF.");
+        process::exit(0x01000);
+    }
 
     iced::application(
         move || App::new(args.file_name.clone()),
@@ -83,7 +95,7 @@ impl App {
         iced::Task::none()
     }
 
-    fn view(&self) -> Element<Message> {
+    fn view<'a>(&'a self) -> Element<'a, Message> {
         let content: Element<Message> = if let Some(handle) = &self.current_image {
             image(handle.clone())
                 .width(Length::Fill)
