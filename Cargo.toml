@@ -1,7 +1,6 @@
 [package]
 name = "rufium"
 version = "0.1.0"
-author = ["Gabriel Leite"] 
 description = "Keyboard-driven PDF Reader"
 readme = "README.md"
 homepage = "https://github.com/Parallax73/rufium"
@@ -11,7 +10,7 @@ keywords = ["pdf", "rufium", "reader"]
 edition = "2024"
 
 [dependencies]
-iced = { version = "0.14.0", features = ["image", "debug"] }
+iced = { version = "0.14.0", features = ["image", "debug", "tokio"] }
 pdfium-render =   { version = "0.8.37", features = ["image"] }
 image = "0.25.9"
 clap = {version = "4.5.53", features= ["derive"] }
