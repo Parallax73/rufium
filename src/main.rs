@@ -66,7 +66,7 @@ pub fn main() -> iced::Result {
         App::update,
         App::view,
     )
-    .title("Rufium")
+    .title("lukia")
     .subscription(App::subscription)
     .run()
 }

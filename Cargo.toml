@@ -1,5 +1,5 @@
 [package]
-name = "rufium"
+name = "lukia"
 version = "0.1.0"
 description = "Keyboard-driven PDF Reader"
 readme = "README.md"
