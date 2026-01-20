@@ -1,4 +1,4 @@
-#!/bin/bas:h
+#!/bin/bash
 set -e
 
 OS="$(uname -s)"
