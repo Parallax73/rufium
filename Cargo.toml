@@ -1,13 +1,21 @@
 [package]
 name = "rufium"
 version = "0.1.0"
-description = "Keyboard-driven PDF Reader"
+description = "Keyboard-driven PDF Reader with Vim-like interface"
 readme = "README.md"
 homepage = "https://github.com/Parallax73/rufium"
 repository = "https://github.com/Parallax73/rufium"
 license = "MIT or Apache-2.0"
-keywords = ["pdf", "rufium", "reader"]
+keywords = ["pdf", "rufium", "reader", "vim"]
 edition = "2024"
+
+[lib]
+name = "rufium"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rufium"
+path = "src/main.rs"
 
 [dependencies]
 iced = { version = "0.14.0", features = ["image", "debug", "tokio"] }
