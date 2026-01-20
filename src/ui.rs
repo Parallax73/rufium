@@ -16,6 +16,8 @@ pub struct ViewerConfig {
     pub initial_window_width: f32,
     pub initial_window_height: f32,
     pub cache_size: usize,
+    pub half_page_scroll_amount: usize,
+    pub target_render_height: f32,
 }
 
 impl Default for ViewerConfig {
@@ -24,6 +26,8 @@ impl Default for ViewerConfig {
             initial_window_width: 800.0,
             initial_window_height: 600.0,
             cache_size: 5,
+            half_page_scroll_amount: 5,
+            target_render_height: 800.0,
         }
     }
 }
@@ -240,7 +244,7 @@ impl ViewerApp {
                     self.current_image = Some(handle.clone());
 
                     let aspect_ratio = result.width as f32 / result.height as f32;
-                    let new_height = 800.0;
+                    let new_height = self.config.target_render_height;
                     let new_width = new_height * aspect_ratio;
 
                     if let Some(id) = self.window_id {
@@ -281,14 +285,17 @@ impl ViewerApp {
                 self.render_current_and_adjacent_pages();
             }
             NavigationAction::HalfPageDown => {
-                // Move forward by 5 pages (half page scroll simulation)
-                let new_index = (self.current_page_index + 5).min(self.total_pages as usize - 1);
+                // Move forward by configured amount (half page scroll simulation)
+                let new_index = (self.current_page_index + self.config.half_page_scroll_amount)
+                    .min(self.total_pages as usize - 1);
                 self.current_page_index = new_index;
                 self.render_current_and_adjacent_pages();
             }
             NavigationAction::HalfPageUp => {
-                // Move backward by 5 pages (half page scroll simulation)
-                let new_index = self.current_page_index.saturating_sub(5);
+                // Move backward by configured amount (half page scroll simulation)
+                let new_index = self
+                    .current_page_index
+                    .saturating_sub(self.config.half_page_scroll_amount);
                 self.current_page_index = new_index;
                 self.render_current_and_adjacent_pages();
             }
